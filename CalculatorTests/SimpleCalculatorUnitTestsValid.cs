@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CalculatorTests
 {
     [TestClass]
-    public class SimpleCalculatorUnitTests
+    public class SimpleCalculatorUnitTestsValid
     {
         [TestMethod]
         public void TestValidAdd()
@@ -25,19 +25,6 @@ namespace CalculatorTests
 
             // Asset
             Assert.AreEqual(output, result);
-        }
-
-        [TestMethod]
-        public void TestOverflowAdd()
-        {
-            // Arrange
-            var calculator = new SimpleCalculator();
-
-            int a = int.MaxValue;
-            int b = 10;
-
-            // Act & Assert
-            var output = Assert.ThrowsException<OverflowException>(() => calculator.Add(a, b));
         }
 
         [TestMethod]
@@ -59,16 +46,37 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        public void TestOverflowSubtract()
+        public void TestValidMultiply()
         {
             // Arrange
             var calculator = new SimpleCalculator();
 
-            int a = int.MinValue;
+            int a = 5;
             int b = 10;
+            int result = 50;
 
-            // Act & Assert
-            var output = Assert.ThrowsException<OverflowException>(() => calculator.Subtract(a, b));
+            // Act
+            var output = calculator.Multiply(a, b);
+
+            // Assert
+            Assert.AreEqual(output, result);
+        }
+
+        [TestMethod]
+        public void TestValidDivide()
+        {
+            // Arrange
+            var calculator = new SimpleCalculator();
+
+            int a = 50;
+            int b = 10;
+            int result = 5;
+
+            // Act
+            var output = calculator.Divide(a, b);
+
+            // Assert
+            Assert.AreEqual(output, result);
         }
     }
 
